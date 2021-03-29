@@ -39,9 +39,7 @@ print(greaterThanSecond(new1List))
 def lengthAndValue(length,value):
     myNexList = []
     for x in range(length):
-        myNexList.append(x)
-    for y in range(value):
-        value = y
+        myNexList.append(value)
     return myNexList
 print(lengthAndValue(5,2))
 

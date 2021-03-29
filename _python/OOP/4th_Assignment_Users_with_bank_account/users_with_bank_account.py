@@ -21,21 +21,27 @@ class BankAccount:
     def display_info(self):
         return self
 class User:
-    def __init__(self, name, email):
+    def __init__(self, name, email,bankAccount):
         self.name = name
         self.email = email
-        self.account = BankAccount(account_nr=user1, iban=user1,interes_rate=0.01,balance=0)
+        self.account = bankAccount
 
     def make_deposit(self, amount):
-        self.account.deposit(700)
+        self.account.deposit(amount)
         return self
 
     def make_withdrawl(self,amount):
-        self.account.withdrawl(200)
+        self.account.withdrawl(amount)
         return self
 
     def account_balance1(self):
         print(self.account)
         return self.account
-user1 = User("User1", "user1@gmail.com")
-Account1 = BankAccount("123553333", "NF19293930330303", 0.01,0)
+
+account1 = BankAccount("123553333", "NF19293930330303", 0.01,0)
+user1 = User("User1", "user1@gmail.com", account1)
+
+account1.deposit(500).deposit(100).deposit(40).withdrawl(300).yeld_interest(20).display_info()
+print(account1.account_balance)
+
+
