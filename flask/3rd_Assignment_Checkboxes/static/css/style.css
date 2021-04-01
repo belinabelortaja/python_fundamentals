@@ -1,0 +1,12 @@
+.box1 {
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+    background-color: blue;
+}
+.box2{
+    height: 50px;
+    width:50px;
+    display: inline-block;
+    background-color: red;
+}  
