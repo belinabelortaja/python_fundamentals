@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo Survey</title>
+</head>
+
+<body>
+    <h3>Registration Forms</h3>
+    <form action='result' method='post'>
+        {% csrf_token %}
+        Your Name: <input type='text' name='name'><br>
+        <h4>Gender</h4>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label><br>
+        <input type="radio" id="other" name="gender" value="other">
+        <label for="other">Other</label><br><br><br>
+        <input type="checkbox" id="windows" name="system" value="windows">
+        <label for="windows"> Windows</label><br>
+        <input type="checkbox" id="linux" name="system" value="linux">
+        <label for="linux"> Linux</label><br>
+        <input type="checkbox" id="mac" name="system" value="mac">
+        <label for="mac"> MAC</label><br>
+        <label for="locations">Dojo Location:</label>
+        <select name="locations" id="locations">
+            <option value="sanjose">San Jose</option>
+            <option value="albania">Albania</option>
+            <option value="sanfrancisco">San Francisco</option>
+        </select><br><br><br>
+        <label for="languages">Favorite Languages:</label>
+        <select name="languages" id="languages">
+            <option value="python">Python</option>
+            <option value="cplus">C++</option>
+            <option value="java">Java</option>
+        </select><br><br><br>
+        <label for="comment">Comments(optional)</label><br>
+        <textarea id="comment" name="comments" rows="4" cols="50">
+        </textarea> <br>
+        <input type='submit' value='Button'>
+    </form>
+
+</body>
+
+</html>
