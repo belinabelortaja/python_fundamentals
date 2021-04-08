@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 def index(request):
-    return(request,'index.html')
-def results(request):
+    return render(request,'index.html')
+def result(request):
     if request.method == 'POST':
         context = {
             'name': request.POST['name'],
@@ -13,3 +13,5 @@ def results(request):
         }
         return render(request, 'results.html', context)
     return render(request, 'results.html')
+def go_back(request):
+    return redirect('/')
