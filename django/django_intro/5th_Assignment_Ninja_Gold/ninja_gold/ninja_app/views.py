@@ -35,10 +35,10 @@ def process_money(request):
     
     request.session['gold_amount']+= my_gold
     if my_gold >= 0:
-        activity= (f'Earned {my_gold} from the {location}...{myTime}')
+        activity= (f'Earned {my_gold} from the {location}...({myTime})')
         color= 'green'
     else:
-        activity= (f'Lost {my_gold} from the {location}... Ouch...{myTime}')
+        activity= (f'Entered a  {location} and lost {my_gold} golds... Ouch...({myTime})')
         color='red'
     
     request.session['activities'].append({'color': color, 'activity':activity})

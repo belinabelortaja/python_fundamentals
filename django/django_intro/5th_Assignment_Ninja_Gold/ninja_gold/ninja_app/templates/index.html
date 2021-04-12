@@ -53,7 +53,7 @@
 <p>Activities</p>
 <div class="activities">
     {% for activity in request.session.activities %}
-    <p style="color:{{activity.color}}">{{activity}}</p>
+    <p style="color:{{activity.color}}">{{activity.activity}}</p>
     {% endfor %}
 </div>
     
