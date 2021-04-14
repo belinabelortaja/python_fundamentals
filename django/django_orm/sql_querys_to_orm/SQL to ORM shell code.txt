@@ -1,0 +1,91 @@
+Microsoft Windows [Version 10.0.19042.867]
+(c) 2020 Microsoft Corporation. All rights reserved.
+
+C:\Users\User>cd desktop
+
+C:\Users\User\Desktop>cd python-stack
+
+C:\Users\User\Desktop\python-stack>cd django
+
+C:\Users\User\Desktop\python-stack\django>cd django_orm
+
+C:\Users\User\Desktop\python-stack\django\django_orm>mkdir sql_querys_to_orm
+
+C:\Users\User\Desktop\python-stack\django\django_orm>cd sql_querys_to_orm
+
+C:\Users\User\Desktop\python-stack\django\django_orm\sql_querys_to_orm>python -m venv my_enviroment
+
+C:\Users\User\Desktop\python-stack\django\django_orm\sql_querys_to_orm>call my_enviroment\Scripts\activate
+
+(my_enviroment) C:\Users\User\Desktop\python-stack\django\django_orm\sql_querys_to_orm>pip install django==2.2
+Collecting django==2.2
+  Using cached Django-2.2-py3-none-any.whl (7.4 MB)
+Collecting pytz
+  Using cached pytz-2021.1-py2.py3-none-any.whl (510 kB)
+Collecting sqlparse
+  Using cached sqlparse-0.4.1-py3-none-any.whl (42 kB)
+Installing collected packages: pytz, sqlparse, django
+Successfully installed django-2.2 pytz-2021.1 sqlparse-0.4.1
+WARNING: You are using pip version 20.2.3; however, version 21.0.1 is available.
+You should consider upgrading via the 'c:\users\user\desktop\python-stack\django\django_orm\sql_querys_to_orm\my_enviroment\scripts\python.exe -m pip install --upgrade pip' command.
+
+(my_enviroment) C:\Users\User\Desktop\python-stack\django\django_orm\sql_querys_to_orm>django-admin startproject sql_to_orm
+
+(my_enviroment) C:\Users\User\Desktop\python-stack\django\django_orm\sql_querys_to_orm>cd sql_to_orm
+
+(my_enviroment) C:\Users\User\Desktop\python-stack\django\django_orm\sql_querys_to_orm\sql_to_orm>python manage.py startapp sql_to_orm_app
+
+(my_enviroment) C:\Users\User\Desktop\python-stack\django\django_orm\sql_querys_to_orm\sql_to_orm>python manage.py makemigrations
+Migrations for 'sql_to_orm_app':
+  sql_to_orm_app\migrations\0001_initial.py
+    - Create model Wizard
+
+(my_enviroment) C:\Users\User\Desktop\python-stack\django\django_orm\sql_querys_to_orm\sql_to_orm>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, sessions, sql_to_orm_app
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying sessions.0001_initial... OK
+  Applying sql_to_orm_app.0001_initial... OK
+
+(my_enviroment) C:\Users\User\Desktop\python-stack\django\django_orm\sql_querys_to_orm\sql_to_orm>python manage.py shell
+Python 3.8.8 (tags/v3.8.8:024d805, Feb 19 2021, 13:18:16) [MSC v.1928 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> Wizard.objects.create(name="Luna Lovegood", house="Ravenclaw", pet="None", year="4")
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'Wizard' is not defined
+>>> from sql_to_orm_app.models import Wizard
+>>> Wizard.objects.create(name="Luna Lovegood", house="Ravenclaw", pet="None", year="4")
+<Wizard: Wizard object (1)>
+>>> Wizard.objects.create(name="Padma Patil", house="Ravenclaw", pet="None", year="5")
+<Wizard: Wizard object (2)>
+>>> ravenclaws = Wizard.objects.filter(house="Ravenclaw")
+>>> luna = Wizard.objects.get(name="Luna Lovegood")
+>>> luna.year = 5
+>>> luna.save()
+>>> Wizard.objects.all()
+<QuerySet [<Wizard: Wizard object (1)>, <Wizard: Wizard object (2)>]>
+
+>>> Wizard.objects.first().__dict__
+{'_state': <django.db.models.base.ModelState object at 0x0000025A16C3ED90>, 'id': 1, 'name': 'Luna Lovegood', 'house': 'Ravenclaw', 'pet': 'None', 'year': 5}
+
+>>> Wizard.objects.all().__dict__
+{'model': <class 'sql_to_orm_app.models.Wizard'>, '_db': None, '_hints': {}, 'query': <django.db.models.sql.query.Query object at 0x0000025A16C1D1C0>, '_result_cache': None, '_sticky_filter': False, '_for_write': False, '_prefetch_related_lookups': (), '_prefetch_done': False, '_known_related_objects': {}, '_iterable_class': <class 'django.db.models.query.ModelIterable'>, '_fields': None}
+>>>
