@@ -1,0 +1,72 @@
+(my_enviroment) C:\Users\User\Desktop\python-stack\django\django_orm\dojo_and_ninjas\dojo_ninjas_proj>python manage.py shell
+Python 3.8.8 (tags/v3.8.8:024d805, Feb 19 2021, 13:18:16) [MSC v.1928 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from dojo_ninjas_app.models import Dojos,Ninjas
+>>> Dojos.objects.create(name="Belina",city="Korce",state="al")
+<Dojos: Dojos object (1)>
+>>> Dojos.objects.create(name="Najada",city="Durres",state="al")
+<Dojos: Dojos object (2)>
+>>> Dojos.objects.create(name="Alban",city="Berat",state="al")
+<Dojos: Dojos object (3)>
+>>> rem_dojos=Dojos.objects.all()
+>>> rem_dojos.delete()
+(3, {'dojo_ninjas_app.Ninjas': 0, 'dojo_ninjas_app.Dojos': 3})
+>>> Dojos.objects.create(name="Belina",city="Korce",state="al")
+<Dojos: Dojos object (4)>
+>>> Dojos.objects.create(name="Najada",city="Durres",state="al")
+<Dojos: Dojos object (5)>
+>>> Dojos.objects.create(name="Alban",city="Berat",state="al")
+<Dojos: Dojos object (6)>
+>>> first_dojo=Dojos.objects.get(id=4)
+>>> first_ninja=Ninjas.objects.create(dojo_id=first_dojo,first_name="Jon",last_name="Selfo")
+>>> second_ninja=Ninjas.objects.create(dojo_id=first_dojo,first_name="Gledis",last_name="Gjanci")
+>>> third_njinja=Ninjas.objects.create(dojo_id=first_dojo,first_name="Kelvin",last_name="Belortaja")
+>>> second_dojo=Dojos.objects.get(id=5)
+>>> forth_ninja=Ninjas.objects.create(dojo_id=second_dojo,first_name="Arbana",last_name="Kola")
+>>> fifth_ninja=Ninjas.objects.create(dojo_id=second_dojo,first_name="Elton",last_name="Hasanaj")
+>>> sixth_ninja=Ninja.objects.create(dojo_id=second_dojo,first_name="Franceska",last_name="Troka")
+>>> sixth_ninja=Ninjas.objects.create(dojo_id=second_dojo,first_name="Franceska",last_name="Troka")
+>>> third_dojo=Dojos.objects.get(id=6)
+>>> seventh_ninja=Ninjas.objects.create(dojo_id=third_dojo,first_name="Mario",last_name="Hysa")
+>>> eighth_ninja=Ninjas.objects.create(dojo_id=third_dojo,first_name="Oerd",last_name="Bej")
+>>> ninth_ninja=Ninjas.objects.create(dojo_id=third_dojo,first_name="Enes",last_name="Matja")
+>>> first_dojo.dojos.all()
+<QuerySet [<Ninjas: Ninjas object (1)>, <Ninjas: Ninjas object (2)>, <Ninjas: Ninjas object (3)>]>
+>>> second_dojo.dojos.all()
+<QuerySet [<Ninjas: Ninjas object (4)>, <Ninjas: Ninjas object (5)>, <Ninjas: Ninjas object (6)>]>
+>>> third_dojo.dojos.all()
+<QuerySet [<Ninjas: Ninjas object (7)>, <Ninjas: Ninjas object (8)>, <Ninjas: Ninjas object (9)>]>
+>>>>>> third_dojo.dojos.last()
+<Ninjas: Ninjas object (9)>
+>>> third_dojo.dojos.last().__dict__
+{'_state': <django.db.models.base.ModelState object at 0x000001A3408A53D0>, 'id': 9, 'dojo_id_id': 6, 'first_name': 'Enes', 'last_name': 'Matja'}
+>>> exit()
+
+(my_enviroment) C:\Users\User\Desktop\python-stack\django\django_orm\dojo_and_ninjas\dojo_ninjas_proj>python manage.py makemigrations
+You are trying to add a non-nullable field 'desc' to dojos without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 1
+Please enter the default value now, as valid Python
+The datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now
+Type 'exit' to exit this prompt
+>>> "old dojo"
+Migrations for 'dojo_ninjas_app':
+  dojo_ninjas_app\migrations\0002_dojos_desc.py
+    - Add field desc to dojos
+
+(my_enviroment) C:\Users\User\Desktop\python-stack\django\django_orm\dojo_and_ninjas\dojo_ninjas_proj>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, dojo_ninjas_app, sessions
+Running migrations:
+  Applying dojo_ninjas_app.0002_dojos_desc... OK
+
+(my_enviroment) C:\Users\User\Desktop\python-stack\django\django_orm\dojo_and_ninjas\dojo_ninjas_proj>python manage.py shell
+Python 3.8.8 (tags/v3.8.8:024d805, Feb 19 2021, 13:18:16) [MSC v.1928 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from dojo_ninjas_app.models import Dojos,Ninjas
+>>> Dojos.objects.create(name="Anisa",city="Tirana",state="al",desc="this is a new attribute on the class")
+<Dojos: Dojos object (7)>
