@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <h1>Add User</h1>
+        <div class="form">
+            <form action="/result" method="POST">
+                {% csrf_token %}
+                <label for="firstname">First name:</label>
+                <input type="text" id="firstname" name="firstname">
+                <label for="lastname">Last name:</label>
+                <input type="text" id="lastname" name="lastname"><br>
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email">
+                <label for="age">Age:</label>
+                <input type="text" id="age" name="age"><br>
+                <input type='submit' class="add" value='Add'>
+            </form>
+        </div>
+        <h1>All the users</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Age</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in all_the_users %}
+                <tr>
+                    <td scope="col">{{ forloop.counter }}</td>
+                    <td scope="col">{{ user.firstname }} {{user.lastname}}</td>
+                    <td scope="col">{{ user.email }}</td>
+                    <td scope="col">{{ user.age }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <div class="empty">
+            </div>
+</body>
+
+</html>

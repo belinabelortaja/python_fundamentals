@@ -1,0 +1,21 @@
+table, th, td{
+    border: 1px solid black;
+    padding: 5px;
+    margin-left: 200px;
+  }
+h1, .add{
+    margin-left: 320px;
+    margin-top: 20px;
+}
+
+#firstname,#lastname{
+    margin-left: 50px;
+    margin-bottom: 20px;
+}
+#email{
+    margin-left: 80px;
+}
+#age{
+    margin-left: 90px;
+}
+
