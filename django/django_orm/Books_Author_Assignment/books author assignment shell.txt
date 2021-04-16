@@ -1,0 +1,173 @@
+(my_enviroment) C:\Users\User\Desktop\python-stack\django\django_orm\Books_Author_Assignment\book_authors_proj>python manage.py makemigrations
+Migrations for 'book_author_app':
+  book_author_app\migrations\0001_initial.py
+    - Create model Book
+    - Create model Author
+
+(my_enviroment) C:\Users\User\Desktop\python-stack\django\django_orm\Books_Author_Assignment\book_authors_proj>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, book_author_app, contenttypes, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying book_author_app.0001_initial... OK
+  Applying sessions.0001_initial... OK
+
+(my_enviroment) C:\Users\User\Desktop\python-stack\django\django_orm\Books_Author_Assignment\book_authors_proj>python manage.py shell
+Python 3.8.8 (tags/v3.8.8:024d805, Feb 19 2021, 13:18:16) [MSC v.1928 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from book_author_app.models import *
+>>> Book.objects.create(title="C Sharp")
+<Book: Book object (1)>
+>>> Book.objects.create(title="Java")
+<Book: Book object (2)>
+>>> Book.objects.create(title="Python")
+<Book: Book object (3)>
+>>> Book.objects.create(title="PHP")
+<Book: Book object (4)>
+>>> Books.objects.create(title="Ruby")
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'Books' is not defined
+>>> Book.objects.create(title="Ruby")
+<Book: Book object (5)>
+>>> Author.objects.create(first_name="Jane",last_name="Austin")
+<Author: Author object (1)>
+>>> Author.objects.create(first_name="Emily",last_name="Dickinston")
+<Author: Author object (2)>
+>>> Author.objects.create(first_name="Fyodor",last_name="Dostoevsky")
+<Author: Author object (3)>
+>>> Author.objects.create(first_name="William",last_name="Shakespeare")
+<Author: Author object (4)>
+>>> Author.objects.create(first_name="Lau",last_name="Tzu")
+<Author: Author object (5)>
+>>> exit()
+
+(my_enviroment) C:\Users\User\Desktop\python-stack\django\django_orm\Books_Author_Assignment\book_authors_proj>python manage.py makemigrations
+You are trying to add a non-nullable field 'notes' to author without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 1
+Please enter the default value now, as valid Python
+The datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now
+Type 'exit' to exit this prompt
+>>> "no value"
+Migrations for 'book_author_app':
+  book_author_app\migrations\0002_author_notes.py
+    - Add field notes to author
+
+(my_enviroment) C:\Users\User\Desktop\python-stack\django\django_orm\Books_Author_Assignment\book_authors_proj>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, book_author_app, contenttypes, sessions
+Running migrations:
+  Applying book_author_app.0002_author_notes... OK
+
+(my_enviroment) C:\Users\User\Desktop\python-stack\django\django_orm\Books_Author_Assignment\book_authors_proj>python manage.py shell
+Python 3.8.8 (tags/v3.8.8:024d805, Feb 19 2021, 13:18:16) [MSC v.1928 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> c_sharp=Book.objects.get(title="C Sharp")
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'Book' is not defined
+>>> c_sharp= Book.objects.get(title="C Sharp")
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'Book' is not defined
+>>> c_sharp=Book.objects.filter(title="C Sharp")
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'Book' is not defined
+>>> c_sharp= Book.objects.first()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'Book' is not defined
+>>> c_sharp= Book.objects.get(id=1)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'Book' is not defined
+>>> Book.objects.all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'Book' is not defined
+>>> from book_author_app.models import *
+>>> Book.objects.all()
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>, <Book: Book object (3)>, <Book: Book object (4)>, <Book: Book object (5)>]>
+>>> c_sharp= Book.objects.first()
+>>> c_sharp.title="C#"
+>>> c_sharp.save
+<bound method Model.save of <Book: Book object (1)>>
+>>> bill= Author.objects.get(id=4)
+>>> bill.first_name="Bill"
+>>> bill.save()
+>>> c_sharp.save()
+>>> from book_author_app.models import *
+>>> Book.objects.all()
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>, <Book: Book object (3)>, <Book: Book object (4)>, <Book: Book object (5)>]>
+>>> Author.objects.all()
+<QuerySet [<Author: Author object (1)>, <Author: Author object (2)>, <Author: Author object (3)>, <Author: Author object (4)>, <Author: Author object (5)>]>
+>>> jane=Author.objects.get(id=1)
+>>> jane.books.add(id=1)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+TypeError: add() got an unexpected keyword argument 'id'
+>>> book1=Book.objects.get(id=1)
+>>> jane.books.add(book1)
+>>> book2=Book.objects.get(id=2)
+>>> jane.books.add(book2)
+>>> jane.books.all()
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>]>
+>>> emily=Author.objects.get(id=2)
+>>> book3=Book.objects.get(id=3)
+>>> emily.books.add(book1)
+>>> emily.books.add(book2)
+>>> emily.books.add(book3)
+>>> emily.books.all()
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>, <Book: Book object (3)>]>
+>>> fyodor=Author.objects.get(id=3)
+>>> book4=Book.objects.get(id=4)
+>>> fyodor.books.add(book1)
+>>> fyodor.books.add(book2)
+>>> fyodor.books.add(book3)
+>>> fyodor.books.add(book4)
+>>> fyodor.books.all()
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>, <Book: Book object (3)>, <Book: Book object (4)>]>
+>>> william=Author.objects.get(id=4)
+>>> book5=Book.objects.get(id=5)
+>>> william.books.add(book1)
+>>> william.books.add(book2)
+>>> william.books.add(book3)
+>>> william.books.add(book4)
+>>> william.books.add(book5)
+>>> william.books.all()
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>, <Book: Book object (3)>, <Book: Book object (4)>, <Book: Book object (5)>]>
+>>> book3.authors.all()
+<QuerySet [<Author: Author object (2)>, <Author: Author object (3)>, <Author: Author object (4)>]>
+>>> book3.authors.remove(jane)
+>>> lau=Author.objects.get(id=5)
+>>> book2.author.add(lau)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Book' object has no attribute 'author'
+>>> book2.authors.add(lau)
+>>> fyodor.books.all()
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>, <Book: Book object (3)>, <Book: Book object (4)>]>
+>>> book5.authors.all()
+<QuerySet [<Author: Author object (4)>]>
+>>>
