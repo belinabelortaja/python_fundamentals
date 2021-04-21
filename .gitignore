@@ -15,3 +15,5 @@ django/django_orm/users_with_templates/my_enviroment
 django/django_orm/Books_Author_Asignment/my_enviroment
 django/django_orm/Dojo_Ninjas_with_templates
 django/django_orm/dojo_and_ninjas/my_enviroment
+django/django_orm/Books_Authors_with_Template
+django/django_fullstack/Semi_restful_tv_shows/my_enviroment
