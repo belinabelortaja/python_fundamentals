@@ -15,7 +15,7 @@
         <h1>Add a new comment</h1>
         <div class="row">
             <div class="col-lg-12">
-                <form action="/courses/{{course.id}}/comment" method="POST">
+                <form action="/courses/{{course.id}}/view-comment" method="POST">
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="comment">Description</label>
@@ -28,7 +28,7 @@
             {% for x in course.comments.all %}
             <p>{{x.comment}}</p>
             {% endfor %}
-
+            <a href="/courses/new">Go back</a>
 
         </div>
     </div>

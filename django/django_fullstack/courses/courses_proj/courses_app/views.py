@@ -26,7 +26,6 @@ def create(request):
     else:
         description = Description.objects.create(description = request.POST['description'])
         course = Course.objects.create(name = request.POST['name'], description_id = description.id)
-        course.description= description
 
         return redirect('/courses/new')
 def destroy(request,id):
@@ -52,7 +51,7 @@ def add_comment(request,id):
 
 def view_comment(request,id):
      if request.method == 'POST':
-         comment = Course.objects.create(comment=request.POST['comment'], course_id=course.id)
+         comment = Comment.objects.create(comment=request.POST['comment'], course=Course.objects.get(id=id))
 
 
-     return redirect('/courses/'+str(course.id)+'/comment')
+     return redirect(f"/courses/{id}/comment")
